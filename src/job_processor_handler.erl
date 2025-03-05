@@ -24,8 +24,8 @@ init(Req, _Opts) ->
             %% Extract "tasks" from the JSON body
             Tasks = maps:get(<<"tasks">>, Data, []),
 
-            case catch job_processor_sort:sort_tasks(Tasks) of
-                {'EXIT', {cyclic_dependency, Task}} ->
+            case job_processor_sort:sort_tasks(Tasks) of
+                {error, {cyclic_dependency, Task}} ->
                     %% Return error if a cyclic dependency is detected
 		    job_processor_logger:error("job_processor_handler", "init", "Cyclic dependency detected"),
                     Req3 = cowboy_req:reply(400,
