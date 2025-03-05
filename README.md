@@ -112,3 +112,16 @@ curl -X POST http://localhost:8080/jobs -H "Content-Type: application/json" -d @
 ```
 curl -X POST "http://localhost:8080/jobs?format=bash" -H "Content-Type: application/json" -d @tests/tasks.json
 ```
+
+## 9. Tests
+#### Start the web server
+```
+vboxuser@Ubuntu:~/job_processor$ rebar3 eunit
+===> Verifying dependencies...
+===> Analyzing applications...
+===> Compiling job_processor
+===> Performing EUnit tests...
+...
+Finished in 0.105 seconds
+3 tests, 0 failures
+```
