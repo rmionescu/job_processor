@@ -1,17 +1,20 @@
 ## 1. Install rebar3
+```
 git clone https://github.com/erlang/rebar3.git
 cd rebar3
 ./bootstrap
 cp rebar3 /usr/local/bin/
-
+```
 
 ## 2. Install C compiler
 #### Required for compiling dependencies like jiffy (which includes C code).
+```
 vboxuser@Ubuntu:~/job_processor$ sudo apt install build-essential
-
+```
 
 ## 3. Create a new app
 #### "app" is used because we are building a modular application, not a full OTP release.
+```
 vboxuser@Ubuntu:~$ rebar3 new app job_processor
 ===> Writing job_processor/src/job_processor_app.erl
 ===> Writing job_processor/src/job_processor_sup.erl
@@ -20,11 +23,12 @@ vboxuser@Ubuntu:~$ rebar3 new app job_processor
 ===> Writing job_processor/.gitignore
 ===> Writing job_processor/LICENSE.md
 ===> Writing job_processor/README.md
-
+```
 
 ## 4. Add dependencies
 #### Cowboy - HTTP server for handling requests
 #### Jiffy  - JSON parser for encoding/decoding JSON
+```
 vboxuser@Ubuntu:~/job_processor$ cat rebar.config
 {erl_opts, [debug_info]}.
 {deps, [
@@ -36,9 +40,10 @@ vboxuser@Ubuntu:~/job_processor$ cat rebar.config
     %% {config, "config/sys.config"},
     {apps, [job_processor]}
 ]}.
-
+```
 
 ## 5. Fetch dependencies
+```
 vboxuser@Ubuntu:~/job_processor$ rebar3 get-deps
 ===> Verifying dependencies...
 ===> Fetching cowboy v2.12.0
@@ -48,9 +53,10 @@ vboxuser@Ubuntu:~/job_processor$ rebar3 get-deps
 ===> Compiling pc
 ===> Fetching cowlib v2.13.0
 ===> Fetching ranch v1.8.0
-
+```
 
 ## 6. Compile the project
+```
 vboxuser@Ubuntu:~/job_processor$ rebar3 compile
 ===> Verifying dependencies...
 ===> Analyzing applications...
@@ -77,9 +83,10 @@ vboxuser@Ubuntu:~/job_processor$ rebar3 compile
 ===> Linking /home/vboxuser/job_processor/_build/default/lib/jiffy/priv/jiffy.so
 ===> Analyzing applications...
 ===> Compiling job_processor
-
+```
 
 ## 7. Start the web server
+```
 vboxuser@Ubuntu:~/job_processor$ rebar3 shell
 ===> Verifying dependencies...
 ===> Analyzing applications...
@@ -93,12 +100,15 @@ Eshell V13.2.2.9  (abort with ^G)
 ===> Booted xmerl
 ===> Booted jiffy
 ===> Booted job_processor
-
+```
 
 ## 8. Call the api
 #### json response
+```
 curl -X POST http://localhost:8080/jobs -H "Content-Type: application/json" -d @tests/tasks.json
+```
 
 #### bash response
+```
 curl -X POST "http://localhost:8080/jobs?format=bash" -H "Content-Type: application/json" -d @tests/tasks.json
-
+```
