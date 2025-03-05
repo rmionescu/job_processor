@@ -1,0 +1,9 @@
+{
+  "tasks": [
+    {
+      "name": "task-1",
+      "command": "touch /tmp/file1",
+      "requires": ["task-2"]
+    }
+  ]
+}
