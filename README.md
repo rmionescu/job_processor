@@ -36,6 +36,13 @@ vboxuser@Ubuntu:~/job_processor$ cat rebar.config
     {jiffy, "1.1.2"}
 ]}.
 
+{profiles, [
+    {test, [
+        {deps, []},
+        {erl_opts, [debug_info, {d, 'TEST'}]}
+    ]}
+]}.
+
 {shell, [
     %% {config, "config/sys.config"},
     {apps, [job_processor]}
@@ -114,14 +121,13 @@ curl -X POST "http://localhost:8080/jobs?format=bash" -H "Content-Type: applicat
 ```
 
 ## 9. Tests
-#### Start the web server
 ```
 vboxuser@Ubuntu:~/job_processor$ rebar3 eunit
 ===> Verifying dependencies...
 ===> Analyzing applications...
 ===> Compiling job_processor
 ===> Performing EUnit tests...
-...
-Finished in 0.105 seconds
-3 tests, 0 failures
+....
+Finished in 0.049 seconds
+4 tests, 0 failures
 ```

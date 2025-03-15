@@ -16,6 +16,7 @@ start(_StartType, _StartArgs) ->
 
 stop(_State) ->
     job_processor_logger:info("job_processor_app", "stop", "Server stopped"),
+    logger:log(info, "Server stopped"),
     ok.
 
 %% internal functions
