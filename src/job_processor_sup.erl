@@ -20,7 +20,8 @@ init([]) ->
         ]}
     ]),
     %% Start Cowboy on port 8080 (using cleartext HTTP)
+    Port = application:get_env(job_processor, port, 8080),
     {ok, _} = cowboy:start_clear(http_listener,
-                                 [{port, 8080}],
+                                 [{port, Port}],
                                  #{env => #{dispatch => Dispatch}}),
     {ok, {{one_for_one, 0, 1}, []}}.
