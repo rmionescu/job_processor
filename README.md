@@ -112,12 +112,12 @@ Eshell V13.2.2.9  (abort with ^G)
 ## 8. Call the api
 #### json response
 ```
-curl -X POST http://localhost:8080/jobs -H "Content-Type: application/json" -d @tests/tasks.json
+curl -X POST http://localhost:8082/jobs -H "Content-Type: application/json" -d @tests/tasks.json
 ```
 
 #### bash response
 ```
-curl -X POST "http://localhost:8080/jobs?format=bash" -H "Content-Type: application/json" -d @tests/tasks.json
+curl -X POST "http://localhost:8082/jobs?format=bash" -H "Content-Type: application/json" -d @tests/tasks.json
 ```
 
 ## 9. Tests

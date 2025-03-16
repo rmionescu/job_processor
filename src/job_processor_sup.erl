@@ -21,6 +21,7 @@ init([]) ->
     ]),
     %% Start Cowboy on port 8080 (using cleartext HTTP)
     Port = application:get_env(job_processor, port, 8080),
+    job_processor_logger:info("job_processor_sup", "init", io_lib:format("Server started on port ~p", [Port])),
     {ok, _} = cowboy:start_clear(http_listener,
                                  [{port, Port}],
                                  #{env => #{dispatch => Dispatch}}),

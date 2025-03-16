@@ -9,7 +9,7 @@
         cowboy,
         jiffy
     ]},
-    {env, [{port, 8081}]},
+    {env, [{port, 8082}]},
     {modules, [ 
         job_processor_app,
         job_processor_sup,
